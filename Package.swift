@@ -9,6 +9,7 @@ let package = Package(
 		.macOS(.v10_15),
 	],
 	products: [
+		.library(name: "SerialHelperC", targets: ["SerialHelperC"]),
 		.library(name: "SwiftSerial", targets: ["SwiftSerial"]),
 		.executable(name: "SerialTerminal", targets: ["SerialTerminal"])
 	],
@@ -16,9 +17,10 @@ let package = Package(
 		.package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMinor(from: "1.3.0")),
 	],
 	targets: [
+		.target(name: "SerialHelperC"),
 		.target(
 			name: "SwiftSerial",
-			dependencies: []
+			dependencies: ["SerialHelperC"]
 		),
 		.executableTarget(
 			name: "SerialTerminal",

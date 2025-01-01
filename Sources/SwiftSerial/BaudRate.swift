@@ -20,7 +20,6 @@ public enum BaudRate {
 	case baud57600
 	case baud115200
 	case baud230400
-	#if os(Linux)
 	case baud460800
 	case baud500000
 	case baud576000
@@ -32,7 +31,6 @@ public enum BaudRate {
 	case baud2500000
 	case baud3500000
 	case baud4000000
-	#endif
 
 	public init(_ value: UInt) throws {
 		switch value {
@@ -74,7 +72,6 @@ public enum BaudRate {
 			self = .baud115200
 		case 230400:
 			self = .baud230400
-		#if os(Linux)
 		case 460800:
 			self = .baud460800
 		case 500000:
@@ -97,76 +94,73 @@ public enum BaudRate {
 			self = .baud3500000
 		case 4000000:
 			self = .baud4000000
-		#endif
 		default:
 			throw PortError.invalidPort
 		}
 	}
 
-	var speedValue: speed_t {
+	var rawValue: Int {
 		switch self {
 		case .baud0:
-			return speed_t(B0)
+			return 0
 		case .baud50:
-			return speed_t(B50)
+			return 50
 		case .baud75:
-			return speed_t(B75)
+			return 75
 		case .baud110:
-			return speed_t(B110)
+			return 110
 		case .baud134:
-			return speed_t(B134)
+			return 134
 		case .baud150:
-			return speed_t(B150)
+			return 150
 		case .baud200:
-			return speed_t(B200)
+			return 200
 		case .baud300:
-			return speed_t(B300)
+			return 300
 		case .baud600:
-			return speed_t(B600)
+			return 600
 		case .baud1200:
-			return speed_t(B1200)
+			return 1200
 		case .baud1800:
-			return speed_t(B1800)
+			return 1800
 		case .baud2400:
-			return speed_t(B2400)
+			return 2400
 		case .baud4800:
-			return speed_t(B4800)
+			return 4800
 		case .baud9600:
-			return speed_t(B9600)
+			return 9600
 		case .baud19200:
-			return speed_t(B19200)
+			return 19200
 		case .baud38400:
-			return speed_t(B38400)
+			return 38400
 		case .baud57600:
-			return speed_t(B57600)
+			return 57600
 		case .baud115200:
-			return speed_t(B115200)
+			return 115200
 		case .baud230400:
-			return speed_t(B230400)
-		#if os(Linux)
+			return 230400
 		case .baud460800:
-			return speed_t(B460800)
+			return 460800
 		case .baud500000:
-			return speed_t(B500000)
+			return 500000
 		case .baud576000:
-			return speed_t(B576000)
+			return 576000
 		case .baud921600:
-			return speed_t(B921600)
+			return 921600
 		case .baud1000000:
-			return speed_t(B1000000)
+			return 1000000
 		case .baud1152000:
-			return speed_t(B1152000)
+			return 1152000
 		case .baud1500000:
-			return speed_t(B1500000)
+			return 1500000
 		case .baud2000000:
-			return speed_t(B2000000)
+			return 2000000
 		case .baud2500000:
-			return speed_t(B2500000)
+			return 2500000
 		case .baud3500000:
-			return speed_t(B3500000)
+			return 3500000
 		case .baud4000000:
-			return speed_t(B4000000)
-		#endif
+			return 4000000
 		}
 	}
 }

@@ -1,4 +1,6 @@
 import Foundation
+import Darwin
+import SerialHelperC
 
 public class SerialPort {
 	var path: String
@@ -115,8 +117,8 @@ public class SerialPort {
 		tcgetattr(fileDescriptor, &settings)
 
 		// Set baud rates
-		cfsetispeed(&settings, baudRateSetting.receiveRate.speedValue)
-		cfsetospeed(&settings, baudRateSetting.transmitRate.speedValue)
+		setbaud(fileDescriptor, Int32(baudRateSetting.receiveRate.rawValue))
+		setbaud(fileDescriptor, Int32(baudRateSetting.transmitRate.rawValue))
 
 		// Enable parity (even/odd) if needed
 		settings.c_cflag |= parityType.parityValue
